@@ -7,7 +7,7 @@ import ast
 from dotenv import load_dotenv
 import os
 load_dotenv()
-
+os.environ["OPENAI_API_KEY"] = "enter your openay cey"
 from ragas import evaluate
 from ragas.metrics import (
     answer_relevancy,
@@ -27,7 +27,6 @@ def CSVpreprocessing(csvPath: str):
 
 
 def evaluateFunction(questionList: list, answerList: list, contextListConvertedEleToList: list, groundTruthList: list):
-
     data = {
         "question": questionList, #! replace with question list!
         "answer": answerList,  #! replace with response from chatbot
@@ -57,7 +56,8 @@ def evaluateFunction(questionList: list, answerList: list, contextListConvertedE
         ],
     )
 
-    return result
+    print(result)
+    
 
 
 
@@ -66,4 +66,4 @@ def Evaluate(CSVPath: str):
     questionList, answerList, contextListConvertedEleToList, groundTruthList = CSVpreprocessing(CSVPath)
     evaluateFunction(questionList, answerList, contextListConvertedEleToList, groundTruthList)
 
-print(Evaluate("../data/Testdata.csv"))
+Evaluate("../data/Testdata.csv")
